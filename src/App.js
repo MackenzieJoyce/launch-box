@@ -1,17 +1,20 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+
 import LaunchData from './pages/LaunchData';
+import IssTracker from './pages/IssTracker';
 
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <main>
-        <LaunchData />
-      </main>
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LaunchData />} />
+          <Route path="/iss-tracker" element={<IssTracker />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
-export default App;
