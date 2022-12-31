@@ -32,6 +32,8 @@ export default function LaunchData() {
 
     return (
         <>
+            <h1>Launch Schedule</h1>
+            <p>View the schedule for the next 5 launches.</p>
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
             {launchData ? launchData.map((launch) => (
