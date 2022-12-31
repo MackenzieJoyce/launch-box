@@ -37,6 +37,12 @@ export default function LaunchData() {
             {launchData ? launchData.map((launch) => (
                 <div key={launch.result}>
                     <LaunchInfo launch={launch} />
+                    {launch.weather_summary ?
+
+                        <LaunchWeather launch={launch} />
+                        :
+                        <p>Forecast not updated</p>
+                    }
                 </div>
             )) : null}
         </>
