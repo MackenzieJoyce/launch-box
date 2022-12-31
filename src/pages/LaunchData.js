@@ -34,11 +34,11 @@ export default function LaunchData() {
         <>
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
-            {launchData ?
-                <>
-                    <LaunchInfo launchData={launchData} />
-                </>
-            : null}
+            {launchData ? launchData.map((launch) => (
+                <div key={launch.result}>
+                    <LaunchInfo launch={launch} />
+                </div>
+            )) : null}
         </>
     )
 }
