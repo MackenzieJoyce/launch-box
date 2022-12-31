@@ -1,12 +1,20 @@
 export default function LaunchWeather({ launch }) {
     return(
-        <>
-            <div>
-                <h5>Weather</h5>
-                <p>Conditions: {launch.weather_condition}</p>
-                <p>Temp: {launch.weather_temp}</p>
-                <p>Wind: {launch.weather_wind_mph} mph</p>
-            </div>
-        </>
+        <div style={styles.WeatherSection} className="weather-info">
+            <h5>Weather Forecast</h5>
+            <p>Conditions: {launch.weather_condition}</p>
+            <p>Temp: {launch.weather_temp}</p>
+            <p>Wind: {launch.weather_wind_mph} mph</p>
+        </div>
     )
+}
+
+const styles = {
+    WeatherSection: {
+        width: '50%',
+        margin: '0 auto',
+        padding: '1%',
+        display: 'flex',
+        flexDirection: 'column',
+    },
 }
