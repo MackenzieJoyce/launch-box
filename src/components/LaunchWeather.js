@@ -16,7 +16,7 @@ export default function LaunchWeather({ launch }) {
 
 const styles = {
     WeatherSection: {
-        width: '50%',
+        width: '30%',
         margin: '0 auto',
         padding: '1%',
         display: 'flex',

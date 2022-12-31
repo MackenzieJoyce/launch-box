@@ -24,7 +24,7 @@ export default function LaunchInfo({ launch }) {
 
 const styles = {
     LaunchSection: {
-        width: '50%',
+        width: '70%',
         margin: '0 auto',
         padding: '1%',
         display: 'flex',
@@ -43,6 +43,6 @@ const styles = {
     LaunchInfo: {
         width: '80%',
         textAlign: 'left',
-        margin: '3%',
+        marginLeft: '3%',
     },
 }
