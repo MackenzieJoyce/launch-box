@@ -48,8 +48,9 @@ export default function LaunchData() {
 
 const styles = {
     LaunchData: {
-        width: '80%',
+        width: '50%',
         margin: '2% auto',
+        padding: '.5%',
         backgroundColor: 'rgb(233, 233, 233)',
         border: '1px solid darkgray',
         borderRadius: '12px',
