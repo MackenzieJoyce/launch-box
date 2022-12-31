@@ -36,6 +36,7 @@ export default function LaunchData() {
             {error ? <p>There was an error</p> : null}
             {launchData ?
                 <>
+                    <LaunchInfo launchData={launchData} />
                 </>
             : null}
         </>
