@@ -45,6 +45,11 @@ p {
   line-height: 1.8rem;
 }
 
+a {
+  color: var(--black);
+  text-decoration: none;
+}
+
 main {
   display: flex;
   flex-direction: column;
