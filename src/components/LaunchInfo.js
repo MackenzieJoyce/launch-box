@@ -4,7 +4,7 @@ export default function LaunchInfo({ launch }) {
     let launchYear = launch.date_str.substring(7, 11)
 
     return (
-        <div style={styles.LaunchSection} className="launch-info">
+        <div style={styles.LaunchSection}>
             <div style={styles.LaunchDate}>
                 <p style={styles.month}>{launchMonth}</p>
                 <p>{launchDay}</p>
@@ -26,12 +26,15 @@ const styles = {
     LaunchSection: {
         width: '70%',
         margin: '0 auto',
-        padding: '1%',
         display: 'flex',
     },
     LaunchDate: {
-        width: '20%',
-        borderRight: '1px solid black',
+        margin: '2%',
+        padding: '3% 6%',
+        backgroundColor: 'rgb(255, 255, 255)',
+        borderRight: '2px solid darkgray',
+        borderBottom: '2px solid darkgray',
+        borderRadius: '10px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

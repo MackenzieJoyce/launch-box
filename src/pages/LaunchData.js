@@ -48,9 +48,10 @@ const styles = {
     LaunchData: {
         width: '80%',
         margin: '2% auto',
-        backgroundColor: 'rgb(252, 252,252)',
-        border: '1px solid black',
-        borderRadius: '5px',
+        backgroundColor: 'rgb(233, 233, 233)',
+        border: '1px solid darkgray',
+        borderRadius: '12px',
+        boxShadow: '0 1px 8px rgba(0, 0, 0, 0.25)',
         display: 'flex',
     },
 }
