@@ -16,6 +16,7 @@ export default function IssTracker() {
         axios
             .get("https://tle.ivanstanojevic.me/api/tle/25544/flyover")
             .then((response) => {
+                console.log(response.data);
                 setIssData(response.data.member);
                 setLoading(false)
             })

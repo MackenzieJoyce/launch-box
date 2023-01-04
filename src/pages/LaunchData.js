@@ -15,7 +15,7 @@ export default function LaunchData() {
             axios
                 .get('https://fdo.rocketlaunch.live/json/launches/next/5')
                 .then(response => {
-                    console.log(response.data.result);
+                    // console.log(response.data.result);
                     setLaunchData(response.data.result)
                     setLoading(false)
                 })
