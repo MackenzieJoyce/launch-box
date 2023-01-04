@@ -12,7 +12,7 @@ export default function IssTracker() {
         axios
             .get("https://tle.ivanstanojevic.me/api/tle/25544/flyover")
             .then((response) => {
-                console.log(response.data.member);
+                // console.log(response.data.member);
                 setIssData(response.data.member);
             })
             .catch((err) => {
@@ -54,6 +54,17 @@ export default function IssTracker() {
                 <span>(Pssst: capitalization matters!)</span>
                 <button type="submit">Submit</button>
             </form>
+
+            {issData ? issData.map((iss) => (
+                    <div key={iss.id}>
+                        <p>
+                            {iss.aos.date}
+                        </p>
+                    </div>
+                ))
+             : (
+                <p>Loading...</p>
+            )}
         </>
     );
 }
