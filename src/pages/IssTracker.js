@@ -7,26 +7,13 @@ export default function IssTracker() {
     const [lat, setLat] = useState();
     const [long, setLong] = useState();
 
-    // Get ISS data
-    // const getApiData = () => {
-    //     axios
-    //         .get("https://tle.ivanstanojevic.me/api/tle/25544/propagate")
-    //         .then((response) => {
-    //             console.log(response.data);
-    //             setIssData(response.data);
-    //         })
-    //         .catch((err) => {
-    //             console.error(err);
-    //         });
-    // };
-
     // Get ISS flyover data
     const getApiData = async () => {
         axios
             .get("https://tle.ivanstanojevic.me/api/tle/25544/flyover")
             .then((response) => {
-                // console.log(response.data);
-                setIssData(response.data);
+                console.log(response.data.member);
+                setIssData(response.data.member);
             })
             .catch((err) => {
                 console.error(err);
@@ -67,13 +54,6 @@ export default function IssTracker() {
                 <span>(Pssst: capitalization matters!)</span>
                 <button type="submit">Submit</button>
             </form>
-
-            {issData ? (
-                <div>
-                    {/* <p>Longitude: {issData.geodetic.longitude}</p>
-                    <p>Latitude: {issData.geodetic.latitude}</p> */}
-                </div>
-            ) : null}
         </>
     );
 }
