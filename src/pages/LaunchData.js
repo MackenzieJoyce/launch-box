@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import LaunchInfo from '../components/LaunchInfo'
-import LaunchWeather from '../components/LaunchWeather'
+import InfoBar from '../UI/InfoBar';
+import LaunchInfo from '../components/LaunchInfo';
+import LaunchWeather from '../components/LaunchWeather';
 
 export default function LaunchData() {
     const [launchData, setLaunchData] = useState([])
@@ -37,24 +38,11 @@ export default function LaunchData() {
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
             {launchData ? launchData.map((launch) => (
-                <div key={launch.result} style={styles.LaunchData}>
+                <InfoBar key={launch.result}>
                     <LaunchInfo launch={launch} />
                     <LaunchWeather launch={launch} />
-                </div>
+                </InfoBar>
             )) : null}
         </>
     )
-}
-
-const styles = {
-    LaunchData: {
-        width: '50%',
-        margin: '2% auto',
-        padding: '.5%',
-        backgroundColor: 'rgb(233, 233, 233)',
-        border: '1px solid darkgray',
-        borderRadius: '12px',
-        boxShadow: '0 1px 8px rgba(0, 0, 0, 0.25)',
-        display: 'flex',
-    },
 }

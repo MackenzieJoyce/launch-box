@@ -1,5 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
+
+import InfoBar from "../UI/InfoBar";
 
 export default function IssTracker() {
     const [issData, setIssData] = useState([]);
@@ -12,7 +14,6 @@ export default function IssTracker() {
         axios
             .get("https://tle.ivanstanojevic.me/api/tle/25544/flyover")
             .then((response) => {
-                // console.log(response.data.member);
                 setIssData(response.data.member);
             })
             .catch((err) => {
@@ -56,11 +57,11 @@ export default function IssTracker() {
             </form> */}
 
             {issData ? issData.map((iss) => (
-                    <div key={iss.id}>
+                    <InfoBar key={iss.id}>
                         <p>
                             {iss.aos.date}
                         </p>
-                    </div>
+                    </InfoBar>
                 ))
              : (
                 <p>Loading...</p>
