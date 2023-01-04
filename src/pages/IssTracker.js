@@ -5,9 +5,11 @@ import InfoBar from "../UI/InfoBar";
 
 export default function IssTracker() {
     const [issData, setIssData] = useState([]);
-    const [currentLocation, setCurrentLocation] = useState();
-    const [lat, setLat] = useState();
-    const [long, setLong] = useState();
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
+    // const [currentLocation, setCurrentLocation] = useState();
+    // const [lat, setLat] = useState();
+    // const [long, setLong] = useState();
 
     // Get ISS flyover data
     const getApiData = async () => {
@@ -15,9 +17,12 @@ export default function IssTracker() {
             .get("https://tle.ivanstanojevic.me/api/tle/25544/flyover")
             .then((response) => {
                 setIssData(response.data.member);
+                setLoading(false)
             })
             .catch((err) => {
                 console.error(err);
+                setError(true)
+                setLoading(false)
             });
     };
 
@@ -56,16 +61,22 @@ export default function IssTracker() {
                 <button type="submit">Submit</button>
             </form> */}
 
+            {loading ? <p>Loading...</p> : null}
+            {error ? <p>There was an error</p> : null}
             {issData ? issData.map((iss) => (
                     <InfoBar key={iss.id}>
                         <p>
-                            {iss.aos.date}
+                            {iss.aos.date.substring(5, 7)}/
+                            {iss.aos.date.substring(8, 10)}/
+                            {iss.aos.date.substring(0, 4)}{" "}
+
+                            at{" "}
+
+                            {iss.aos.date.substring(11, 19)}
                         </p>
                     </InfoBar>
                 ))
-             : (
-                <p>Loading...</p>
-            )}
+                : null}
         </>
     );
 }
