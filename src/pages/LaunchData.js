@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Timeline } from '@mantine/core';
 
+import PageHeader from '../UI/PageHeader';
 import InfoBar from '../UI/InfoBar';
 import LaunchInfo from '../components/LaunchInfo';
 import LaunchWeather from '../components/LaunchWeather';
@@ -47,8 +48,7 @@ export default function LaunchData() {
 
     return (
         <>
-            <h1>Launch Schedule</h1>
-            <p>View the schedule for the next 5 launches.</p>
+            <PageHeader title="Launch Schedule" description="View the schedule for the next 5 launches" />
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
             <Timeline color="red" radius="lg" active={handleActiveBullet()} bulletSize={24} style={styles.Timeline}>

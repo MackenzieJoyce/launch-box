@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import PageHeader from "../UI/PageHeader";
 import InfoBar from "../UI/InfoBar";
 
 export default function IssTracker() {
@@ -30,8 +31,7 @@ export default function IssTracker() {
 
     return (
         <>
-            <h1>ISS Tracker</h1>
-            <p>Know when to look up!</p>
+            <PageHeader title="ISS Tracker" description="Know when to look up!" />
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
             {issData ? issData.map((iss) => (
