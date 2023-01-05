@@ -8,7 +8,7 @@ export default function InfoBar(props) {
 
 const styles = {
     InfoBar: {
-        width: '50%',
+        // width: '50%',
         margin: '2% auto',
         padding: '.5%',
         backgroundColor: 'rgb(233, 233, 233)',

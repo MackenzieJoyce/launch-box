@@ -38,7 +38,7 @@ export default function LaunchData() {
             <p>View the schedule for the next 5 launches.</p>
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
-            <Timeline color="red" radius="lg" active={0} bulletSize={24}>
+            <Timeline color="red" radius="lg" active={0} bulletSize={24} style={styles.Timeline}>
                 {launchData ? launchData.map((launch) => (
                     <Timeline.Item key={launch.result} color="red" bulletSize={24}>
                         <InfoBar>
@@ -51,4 +51,12 @@ export default function LaunchData() {
 
         </>
     )
+}
+
+const styles = {
+    Timeline: {
+        maxWidth: '50%',
+        margin: '0 auto',
+        padding: '0 1%',
+    }
 }
