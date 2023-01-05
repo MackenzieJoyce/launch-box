@@ -12,25 +12,38 @@ export default function LaunchData() {
     const [error, setError] = useState(false)
 
     const getApiData = () => {
-        return (
-            axios
-                .get('https://fdo.rocketlaunch.live/json/launches/next/5')
-                .then(response => {
-                    // console.log(response.data.result);
-                    setLaunchData(response.data.result)
-                    setLoading(false)
-                })
-                .catch(error => {
-                    console.log(error)
-                    setError(true)
-                    setLoading(false)
-                })
-        )
+        axios
+            .get('https://fdo.rocketlaunch.live/json/launches/next/5')
+            .then(response => {
+                // console.log(response.data.result);
+                setLaunchData(response.data.result)
+                setLoading(false)
+            })
+            .catch(error => {
+                console.log(error)
+                setError(true)
+                setLoading(false)
+            })
     }
 
     useEffect(() => {
         getApiData()
     }, [])
+
+
+    const handleActiveBullet = () => {
+        // Default the number of active bullets to be only the first bullet
+        let activeBullet = 0
+        // Filter the launchData array to find any launches that have the same date as the first launch
+        const sameDate = launchData.filter(launch => launch.date_str === launchData[0].date_str)
+        // If there are any launches with the same date as the first launch, set the number of active bullets to be the number of launches with the same date as the first launch minus 2 (to account for the first launch and the last launch)
+        if (sameDate.length > 0) {
+            activeBullet = sameDate.length + 1 - 2
+        } else {
+            activeBullet = 0
+        }
+        return activeBullet
+    }
 
     return (
         <>
@@ -38,10 +51,10 @@ export default function LaunchData() {
             <p>View the schedule for the next 5 launches.</p>
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
-            <Timeline color="red" radius="lg" active={0} bulletSize={24} style={styles.Timeline}>
+            <Timeline color="red" radius="lg" active={handleActiveBullet()} bulletSize={24} style={styles.Timeline}>
                 {launchData ? launchData.map((launch) => (
-                    <Timeline.Item key={launch.result} color="red" bulletSize={24}>
-                        <InfoBar>
+                    <Timeline.Item color="red" bulletSize={24}>
+                        <InfoBar key={launch.id}>
                             <LaunchInfo launch={launch} />
                             <LaunchWeather launch={launch} />
                         </InfoBar>
