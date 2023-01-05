@@ -5,7 +5,7 @@ export default function LaunchWeather({ launch }) {
             {launch.weather_summary ?
                 <div>
                     <p>Conditions: {launch.weather_condition}</p>
-                    <p>Temp: {launch.weather_temp}</p>
+                    <p>Temp: {launch.weather_temp}&deg;F</p>
                     <p>Wind: {launch.weather_wind_mph} mph</p>
                 </div>
             :
