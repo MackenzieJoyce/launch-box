@@ -51,7 +51,7 @@ export default function LaunchData() {
             <PageHeader title="Launch Schedule" description="View the schedule for the next 5 launches" />
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
-            <Timeline color="red" radius="lg" active={handleActiveBullet()} bulletSize={24} style={styles.Timeline}>
+            <Timeline color="red" radius="lg" active={handleActiveBullet()} bulletSize={24} lineWidth={6} style={styles.Timeline}>
                 {launchData ? launchData.map((launch) => (
                     <Timeline.Item color="red" bulletSize={24}>
                         <InfoBar key={launch.id}>
