@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Timeline } from '@mantine/core';
 
 import InfoBar from '../UI/InfoBar';
 import LaunchInfo from '../components/LaunchInfo';
@@ -37,12 +38,17 @@ export default function LaunchData() {
             <p>View the schedule for the next 5 launches.</p>
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
-            {launchData ? launchData.map((launch) => (
-                <InfoBar key={launch.result}>
-                    <LaunchInfo launch={launch} />
-                    <LaunchWeather launch={launch} />
-                </InfoBar>
-            )) : null}
+            <Timeline color="red" radius="lg" active={0} bulletSize={24}>
+                {launchData ? launchData.map((launch) => (
+                    <Timeline.Item key={launch.result} color="red" bulletSize={24}>
+                        <InfoBar>
+                            <LaunchInfo launch={launch} />
+                            <LaunchWeather launch={launch} />
+                        </InfoBar>
+                    </Timeline.Item>
+                )) : null}
+            </Timeline>
+
         </>
     )
 }
