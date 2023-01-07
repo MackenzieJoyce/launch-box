@@ -8,6 +8,9 @@ import InfoBar from "../UI/InfoBar";
 export default function IssTracker() {
     const [issData, setIssData] = useState([]);
     const [firstAvailableViewing, setFirstAvailableViewing] = useState([]);
+    const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 100));
+    const [issSrc, setIssSrc] = useState("");
+    const [issCaption, setIssCaption] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -31,6 +34,17 @@ export default function IssTracker() {
         getApiData();
     }, []);
 
+    if (issData !== []) {
+        axios
+            .get("https://images-api.nasa.gov/search?q=nasa+iss+images")
+            .then((response) => {
+                const imgPath = response.data.collection.items[randomNum];
+                setIssSrc(imgPath.links[0].href);
+                setIssCaption(imgPath.data[0].title);
+            }
+        )
+    }
+
     return (
         <Container>
             <PageHeader title="ISS Tracker" description="Know when to look up!" />
@@ -38,8 +52,8 @@ export default function IssTracker() {
                 {loading ? <p>Loading...</p> : null}
                 {error ? <p>There was an error</p> : null}
                 {issData[0] ? (
-                    <InfoBar>
-                        <div style={styles.firstAvailableContainer}>
+                    <Container style={styles.firstAvailableInfo}>
+                        <InfoBar>
                             <p>Your next available viewing date is </p>
                             <h4>
                                 {firstAvailableViewing.aos.date.substring(5, 7)}/
@@ -50,10 +64,12 @@ export default function IssTracker() {
 
                                 {firstAvailableViewing.aos.date.substring(11, 16)}
                             </h4>
-                        </div>
-                    </InfoBar>
+                            <img src={issSrc} alt={issSrc} style={styles.firstAvailableImg}></img>
+                        </InfoBar>
+                    </Container>
                 ) : null}
 
+                <Container height={200}>
                 <InfoBar>
                     <div style={styles.otherAvailabilityContainer}>
                         {issData ? issData.map((iss) => (
@@ -71,19 +87,22 @@ export default function IssTracker() {
                         ))
                         : null}
                     </div>
-                </InfoBar>
+                    </InfoBar>
+                </Container>
             </section>
         </Container>
     );
 }
 
 const styles = {
-    firstAvailableContainer: {
-        height: "fit-content",
-        padding: "8%",
+    firstAvailableInfo: {
         textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
+    },
+    firstAvailableImg: {
+        width: "80%",
+        height: "auto",
+        margin: "3%",
+        objectFit: "contain",
     },
     otherAvailabilityContainer: {
         padding: "8%",

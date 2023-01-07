@@ -51,7 +51,6 @@ a {
 }
 
 .side-by-side {
-  margin: 0 5%;
   display: flex;
   justify-content: space-evenly;
 }
