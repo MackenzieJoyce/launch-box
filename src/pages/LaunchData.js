@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Timeline } from '@mantine/core';
+import { Container, Timeline } from '@mantine/core';
 
 import PageHeader from '../UI/PageHeader';
 import InfoBar from '../UI/InfoBar';
@@ -47,7 +47,7 @@ export default function LaunchData() {
     }
 
     return (
-        <>
+        <Container>
             <PageHeader title="Launch Schedule" description="View the schedule for the next 5 launches" />
             {loading ? <p>Loading...</p> : null}
             {error ? <p>There was an error</p> : null}
@@ -55,21 +55,26 @@ export default function LaunchData() {
                 {launchData ? launchData.map((launch) => (
                     <Timeline.Item color="red" bulletSize={24}>
                         <InfoBar key={launch.id}>
-                            <LaunchInfo launch={launch} />
-                            <LaunchWeather launch={launch} />
+                            <div style={styles.launchBox}>
+                                <LaunchInfo launch={launch} />
+                                <LaunchWeather launch={launch} />
+                            </div>
                         </InfoBar>
                     </Timeline.Item>
                 )) : null}
             </Timeline>
-
-        </>
+        </Container>
     )
 }
 
 const styles = {
     Timeline: {
         maxWidth: '50%',
-        margin: '0 auto',
+        margin: '0 auto 5% auto',
         padding: '0 1%',
-    }
+    },
+    launchBox: {
+        display: 'flex',
+        padding: '3% 1%',
+    },
 }
