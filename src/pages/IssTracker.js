@@ -46,31 +46,28 @@ export default function IssTracker() {
     }
 
     return (
-        <Container>
+        <Container size="md">
             <PageHeader title="ISS Tracker" description="Know when to look up!" />
-            <section className="side-by-side">
-                {loading ? <p>Loading...</p> : null}
-                {error ? <p>There was an error</p> : null}
-                {issData[0] ? (
-                    <Container style={styles.firstAvailableInfo}>
-                        <InfoBar>
-                            <p>Your next available viewing date is </p>
-                            <h4>
-                                {firstAvailableViewing.aos.date.substring(5, 7)}/
-                                {firstAvailableViewing.aos.date.substring(8, 10)}/
-                                {firstAvailableViewing.aos.date.substring(0, 4)}{" "}
+            <InfoBar>
+                <div style={styles.trackerComponent}>
+                    {loading ? <p>Loading...</p> : null}
+                    {error ? <p>There was an error</p> : null}
+                    {issData[0] ? (
+                        <div style={styles.firstAvailableInfo}>
+                                <h4>Your next available viewing date is </h4>
+                                <h2 style={styles.highlight}>
+                                    {firstAvailableViewing.aos.date.substring(5, 7)}/
+                                    {firstAvailableViewing.aos.date.substring(8, 10)}/
+                                    {firstAvailableViewing.aos.date.substring(0, 4)}{" "}
 
-                                at{" "}
+                                    at{" "}
 
-                                {firstAvailableViewing.aos.date.substring(11, 16)}
-                            </h4>
+                                    {firstAvailableViewing.aos.date.substring(11, 16)}
+                                </h2>
                             <img src={issSrc} alt={issSrc} style={styles.firstAvailableImg}></img>
-                        </InfoBar>
-                    </Container>
-                ) : null}
+                        </div>
+                    ) : null}
 
-                <Container height={200}>
-                <InfoBar>
                     <div style={styles.otherAvailabilityContainer}>
                         {issData ? issData.map((iss) => (
                             <div key={iss.id} style={styles.indivAvailability}>
@@ -87,16 +84,24 @@ export default function IssTracker() {
                         ))
                         : null}
                     </div>
-                    </InfoBar>
-                </Container>
-            </section>
+                </div>
+            </InfoBar>
         </Container>
     );
 }
 
 const styles = {
+    trackerComponent: {
+        display: "flex",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+    },
     firstAvailableInfo: {
         textAlign: "center",
+    },
+    highlight: {
+        padding: "0 0 3% 0",
+        borderBottom: "2px solid red",
     },
     firstAvailableImg: {
         width: "80%",
@@ -105,11 +110,12 @@ const styles = {
         objectFit: "contain",
     },
     otherAvailabilityContainer: {
-        padding: "8%",
         minWidth: "250px",
         textAlign: "center",
     },
     indivAvailability: {
-        margin: "0 0 8% 0",
+        padding: "5% 0",
+        borderTop: ".5px solid #fff",
+        borderBottom: ".5px solid lightgrey",
     }
 }
