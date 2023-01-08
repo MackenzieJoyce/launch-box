@@ -4,6 +4,7 @@ import { Container, Timeline } from '@mantine/core';
 
 import PageHeader from '../UI/PageHeader';
 import InfoBar from '../UI/InfoBar';
+import Loading from '../UI/Loading';
 import LaunchInfo from '../components/LaunchInfo';
 import LaunchWeather from '../components/LaunchWeather';
 
@@ -113,7 +114,7 @@ export default function LaunchData() {
     return (
         <Container>
             <PageHeader title="Launch Schedule" description="View the schedule for the next 5 launches" />
-            {loading ? <p>Loading...</p> : null}
+            {loading ? <Loading /> : null}
             {error ? <p>There was an error</p> : null}
             <Timeline color="red" radius="lg" active={activeBullet} bulletSize={24} lineWidth={6} style={styles.Timeline}>
                 {launchData ? launchData.map((launch) => (

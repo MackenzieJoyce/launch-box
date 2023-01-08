@@ -4,6 +4,7 @@ import { Container } from "@mantine/core";
 
 import PageHeader from "../UI/PageHeader";
 import InfoBar from "../UI/InfoBar";
+import Loading from "../UI/Loading";
 
 export default function IssTracker() {
     const [issData, setIssData] = useState([]);
@@ -48,10 +49,11 @@ export default function IssTracker() {
     return (
         <Container size="md">
             <PageHeader title="ISS Tracker" description="Know when to look up!" />
+            {loading ? <Loading /> : null}
+            {error ? <p>There was an error</p> : null}
             <InfoBar>
                 <div style={styles.trackerComponent}>
-                    {loading ? <p>Loading...</p> : null}
-                    {error ? <p>There was an error</p> : null}
+
                     {issData[0] ? (
                         <div style={styles.firstAvailableInfo}>
                                 <h4>Your next available viewing date is </h4>
