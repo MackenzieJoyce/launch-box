@@ -15,6 +15,7 @@ export default function LaunchData() {
     let launch
     let sameDate = []
     let manyLaunch
+    let singleLaunch
 
     const getApiData = () => {
         axios
@@ -22,27 +23,28 @@ export default function LaunchData() {
             .then(response => {
                 // console.log("Data: ", response.data.result);
                 launch = response.data.result
-                // setLaunchData(launch)
+                setLaunchData(launch)
                 setLoading(false)
                 // If the first launch is today, set the active bullet to 1
                 if (launch[0].date_str === new Date().toISOString().slice(0, 10).replace(/-/g, "")) {
                     setActiveBullet(1)
                 }
 
-                while (launch.length > 0) {
-                    let firstLaunch = launch[0]
-                    let firstLaunchDate = firstLaunch.date_str
+                // while (launch.length > 0) {
+                //     let firstLaunch = launch[0]
+                //     let firstLaunchDate = firstLaunch.date_str
 
-                    let launchesWithSameDate = launch.filter(launch => launch.date_str === firstLaunchDate)
+                //     let launchesWithSameDate = launch.filter(launch => launch.date_str === firstLaunchDate)
 
-                    if (launchesWithSameDate.length > 0) {
-                        sameDate.push(launchesWithSameDate)
-                        launch = launch.slice(launchesWithSameDate.length)
-                    }
-                    // else {
-                    //     launch = launch.slice(1)
-                    // }
-                }
+                //     if (launchesWithSameDate.length > 0) {
+                //         sameDate.push(launchesWithSameDate)
+                //         launch = launch.slice(launchesWithSameDate.length)
+                //     }
+                //     else {
+                //         launch = launch.slice(1)
+                //     }
+                // }
+
                 // console.log("Same Date: ", sameDate);
 
                 // Find index that have an array
@@ -50,7 +52,11 @@ export default function LaunchData() {
                 //     return element.length > 1
                 // })
 
-                // On that index, grab the needed info on every launch
+                // Show the date of a repeated launch
+                // let whatDay = sameDate[index][0].date_str
+                // console.log("What day: ", whatDay);
+
+                // // make a new array that will hold the needed info for the specific index of sameDate
                 // manyLaunch = sameDate[index].map((launch) => {
                 //     return {
                 //         name: launch.name,
@@ -61,32 +67,36 @@ export default function LaunchData() {
                 //         win_open: launch.win_open,
                 //     }
                 // })
-                // console.log("One day, many launches: ", manyLaunch)
 
-                // Show the date of a repeated launch
-                // let whatDay = sameDate[index][0].date_str
-                // console.log("What day: ", whatDay);
+                // // Push back into sameDate
+                // sameDate[index] = manyLaunch
+
+                // Create array inside of each index to give one a date and the other the api information 
+                // sameDate[index] = [{ date: whatDay }, manyLaunch]
+
 
                 // Create new array that will hold objects
                 // Date is key
                 // Launch info is value
-                let newArray = []
-                sameDate.forEach((launch) => {
-                    let date = launch[0].date_str
-                    let launchInfo = launch.map((launch) => {
-                        return {
-                            name: launch.name,
-                            provider: launch.provider.name,
-                            vehicle: launch.vehicle.name,
-                            pad: launch.pad.location.name,
-                            date: launch.date_str,
-                            win_open: launch.win_open,
-                        }
-                    })
-                    newArray.push({ [date]: launchInfo })
-                })
-                console.log("New Array: ", newArray);
-                setLaunchData(newArray)
+                // let newArray = []
+                // sameDate.forEach((launch) => {
+                //     let date = launch[0].date_str
+                //     let launchInfo = launch.map((launch) => {
+                //         return {
+                //             name: launch.name,
+                //             provider: launch.provider.name,
+                //             vehicle: launch.vehicle.name,
+                //             pad: launch.pad.location.name,
+                //             date: launch.date_str,
+                //             win_open: launch.win_open,
+                //         }
+                //     })
+                //     newArray.push({ [date]: launchInfo })
+                // })
+                // console.log("New Array: ", newArray);
+
+
+                // setLaunchData(sameDate)
             })
             .catch(error => {
                 console.log(error)
@@ -94,6 +104,7 @@ export default function LaunchData() {
                 setLoading(false)
             })
     }
+    console.log("Launch Data: ", launchData);
 
     useEffect(() => {
         getApiData()
@@ -108,10 +119,10 @@ export default function LaunchData() {
                 {launchData ? launchData.map((launch) => (
                     <Timeline.Item color="red" bulletSize={24} lineVariant="dashed">
                         <InfoBar key={launch.id}>
-                            {/* <div style={styles.launchBox}>
+                            <div style={styles.launchBox}>
                                 <LaunchInfo launch={launch} />
                                 <LaunchWeather launch={launch} />
-                            </div> */}
+                            </div>
                         </InfoBar>
                     </Timeline.Item>
                 )) : null}
