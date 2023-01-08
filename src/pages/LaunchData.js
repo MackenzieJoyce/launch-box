@@ -18,7 +18,8 @@ export default function LaunchData() {
     // let manyLaunch
     // let singleLaunch
 
-    const getApiData = () => {
+
+    useEffect(() => {
         axios
             .get('https://fdo.rocketlaunch.live/json/launches/next/5')
             .then(response => {
@@ -96,7 +97,6 @@ export default function LaunchData() {
                 // })
                 // console.log("New Array: ", newArray);
 
-
                 // setLaunchData(sameDate)
             })
             .catch(error => {
@@ -104,11 +104,7 @@ export default function LaunchData() {
                 setError(true)
                 setLoading(false)
             })
-    }
-    console.log("Launch Data: ", launchData);
-
-    useEffect(() => {
-        getApiData()
+        console.log("Launch Data: ", launchData);
     }, [])
 
     return (
