@@ -21,7 +21,7 @@ export default function LaunchData() {
                 setLaunchData(response.data.result)
                 setLoading(false)
                 // If the first launch is today, set the active bullet to 1
-                if (launchData[0].date_str === new Date().toISOString().slice(0, 10).replace(/-/g, "")) {
+                if (response.data.result[0].date_str === new Date().toISOString().slice(0, 10).replace(/-/g, "")) {
                     setActiveBullet(1)
                 }
             })
