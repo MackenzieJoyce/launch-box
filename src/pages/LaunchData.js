@@ -14,9 +14,9 @@ export default function LaunchData() {
     const [error, setError] = useState(false)
     const [activeBullet, setActiveBullet] = useState(0)
     let launch
-    let sameDate = []
-    let manyLaunch
-    let singleLaunch
+    // let sameDate = []
+    // let manyLaunch
+    // let singleLaunch
 
     const getApiData = () => {
         axios
