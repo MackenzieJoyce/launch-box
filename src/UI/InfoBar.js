@@ -1,7 +1,11 @@
+import { MediaQuery } from "@mantine/core";
+
 export default function InfoBar(props) {
     return (
         <div style={styles.InfoBar}>
-            {props.children}
+            <MediaQuery smallerThan="sm" styles={stack}>
+                {props.children}
+            </MediaQuery>
         </div>
     )
 }
@@ -13,4 +17,10 @@ const styles = {
         borderRadius: '12px',
         boxShadow: '0 1px 8px rgba(0, 0, 0, 0.25)',
     },
+}
+
+const stack = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
 }
