@@ -65,7 +65,7 @@ export default function IssTracker() {
 
                                 {firstAvailableViewing.aos.date.substring(11, 16)}
                             </h2>
-                            <AspectRatio ratio={1280 / 960} sx={{ minWidth: 300 }} mx="auto">
+                            <AspectRatio ratio={16/9} md={{ minWidth: 300 }} mx="auto">
                                 <Image src={issSrc} alt={issSrc} />
                             </AspectRatio>
                         </div>
