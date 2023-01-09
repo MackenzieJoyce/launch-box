@@ -22,6 +22,13 @@ root.render(
           },
         },
       },
+      breakpoints: {
+        xs: 500,
+        sm: 780,
+        md: 1000,
+        lg: 1275,
+        xl: 1800,
+      },
     }
   } >
       <App />
