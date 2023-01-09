@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Tabs } from '@mantine/core';
+import { MediaQuery, Stack, Tabs } from '@mantine/core';
 import logo from '../assets/images/logo.png';
 
 export default function NavBar() {
@@ -11,14 +11,18 @@ export default function NavBar() {
     };
 
     return (
+        <MediaQuery smallerThan="xs" styles={stack}>
         <header style={styles.flex}>
             <div style={styles.logoDiv}>
                 <img src={logo} alt="logo" style={styles.logoImg}/>
                 <h1>Launch Box</h1>
-            </div>
+                </div>
+
+
             <nav style={styles.flexDown}>
                 <div style={styles.full}>
                     <Tabs value={activeTab} onTabChange={handleChange} color="red">
+                        <MediaQuery smallerThan="xs" styles={center}>
                         <Tabs.List position="right">
                             <Tabs.Tab value="/" component={Link} to="/">
                                 Launch Schedule
@@ -27,10 +31,12 @@ export default function NavBar() {
                                 ISS Tracker
                             </Tabs.Tab>
                         </Tabs.List>
+                        </MediaQuery>
                     </Tabs>
                 </div>
             </nav>
         </header>
+        </MediaQuery>
     );
 }
 
@@ -59,4 +65,14 @@ const styles = {
         height: "auto",
         objectFit: "cover",
     },
+};
+
+// MediaQueries
+const stack = {
+    flexDirection: "column",
+    alignItems: "center",
+};
+
+const center = {
+    justifyContent: "center",
 };
