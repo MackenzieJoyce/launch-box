@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Container } from "@mantine/core";
+import { Container, AspectRatio, Image } from "@mantine/core";
 
 import PageHeader from "../UI/PageHeader";
 import InfoBar from "../UI/InfoBar";
@@ -53,20 +53,21 @@ export default function IssTracker() {
             {error ? <p>There was an error</p> : null}
             <InfoBar>
                 <div style={styles.trackerComponent}>
-
                     {issData[0] ? (
                         <div style={styles.firstAvailableInfo}>
-                                <h4>Your next available viewing date is </h4>
-                                <h2 style={styles.highlight}>
-                                    {firstAvailableViewing.aos.date.substring(5, 7)}/
-                                    {firstAvailableViewing.aos.date.substring(8, 10)}/
-                                    {firstAvailableViewing.aos.date.substring(0, 4)}{" "}
+                            <h4>Your next available viewing date is </h4>
+                            <h2 style={styles.highlight}>
+                                {firstAvailableViewing.aos.date.substring(5, 7)}/
+                                {firstAvailableViewing.aos.date.substring(8, 10)}/
+                                {firstAvailableViewing.aos.date.substring(0, 4)}{" "}
 
-                                    at{" "}
+                                at{" "}
 
-                                    {firstAvailableViewing.aos.date.substring(11, 16)}
-                                </h2>
-                            <img src={issSrc} alt={issSrc} style={styles.firstAvailableImg}></img>
+                                {firstAvailableViewing.aos.date.substring(11, 16)}
+                            </h2>
+                            <AspectRatio ratio={1280 / 960} sx={{ minWidth: 300 }} mx="auto">
+                                <Image src={issSrc} alt={issSrc} />
+                            </AspectRatio>
                         </div>
                     ) : null}
 
@@ -104,12 +105,6 @@ const styles = {
     highlight: {
         padding: "0 0 3% 0",
         borderBottom: "2px solid red",
-    },
-    firstAvailableImg: {
-        width: "80%",
-        height: "auto",
-        margin: "3%",
-        objectFit: "contain",
     },
     otherAvailabilityContainer: {
         minWidth: "250px",
