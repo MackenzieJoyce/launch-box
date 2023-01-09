@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Timeline } from '@mantine/core';
+import { Container, MediaQuery, Timeline } from '@mantine/core';
 
 import PageHeader from '../UI/PageHeader';
 import InfoBar from '../UI/InfoBar';
@@ -108,34 +108,39 @@ export default function LaunchData() {
     }, [])
 
     return (
-        <Container>
-            <PageHeader title="Launch Schedule" description="View the schedule for the next 5 launches" />
-            {loading ? <Loading /> : null}
-            {error ? <p>There was an error</p> : null}
-            <Timeline color="red" radius="lg" active={activeBullet} bulletSize={24} lineWidth={6} style={styles.Timeline}>
-                {launchData ? launchData.map((launch) => (
-                    <Timeline.Item color="red" bulletSize={24} lineVariant="dashed">
-                        <InfoBar key={launch.id}>
-                            <div style={styles.launchBox}>
-                                <LaunchInfo launch={launch} />
-                                <LaunchWeather launch={launch} />
-                            </div>
-                        </InfoBar>
-                    </Timeline.Item>
-                )) : null}
-            </Timeline>
-        </Container>
+        <MediaQuery smallerThan="md" styles={contain}>
+            <Container size="md">
+                <PageHeader title="Launch Schedule" description="View the schedule for the next 5 launches" />
+                {loading ? <Loading /> : null}
+                {error ? <p>There was an error</p> : null}
+
+                <Timeline color="red" radius="lg" active={activeBullet} bulletSize={24} lineWidth={6} style={styles.Timeline}>
+                    {launchData ? launchData.map((launch) => (
+                        <Timeline.Item color="red" bulletSize={24} lineVariant="dashed">
+                            <InfoBar key={launch.id}>
+                                <div style={styles.launchBox}>
+                                    <LaunchInfo launch={launch} />
+                                    <LaunchWeather launch={launch} />
+                                </div>
+                            </InfoBar>
+                        </Timeline.Item>
+                    )) : null}
+                </Timeline>
+            </Container>
+        </MediaQuery>
     )
 }
 
 const styles = {
     Timeline: {
-        maxWidth: '50%',
         margin: '0 auto 5% auto',
-        padding: '0 1%',
     },
     launchBox: {
         display: 'flex',
         padding: '3% 1%',
     },
+}
+
+const contain = {
+    maxWidth: '90%',
 }
