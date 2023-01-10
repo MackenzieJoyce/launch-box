@@ -9,7 +9,7 @@ export default function Footer() {
 
                     <h6>About</h6>
                     <p style={styles.text}>
-                        This app was created for my uncle, Juan. His love for space exploration has been a constant in my life, and sparked my interest in space at a young age. We talk often about the latest space news, but I'm not always up to date on upcoming launches. Although this app was built for him, my hope is that many people can find joy from the information provided.
+                        This app was created for my uncle, Juan. His love for space exploration has been a constant in my life, and sparked my interest in space at a young age. Although this app was built for him, my hope is that many people can find joy from the information provided.
                     </p>
                     <p style={styles.spacing}>
                         I will continue to update and add more features. <a href="mailto:mackenziejoyce414@gmail.com">Let me know</a> what works, doesn't work, or what you would want to see next!
