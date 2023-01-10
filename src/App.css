@@ -1,12 +1,11 @@
 :root {
   --black: rgb(18, 18, 18);
-  --gray: rgb(128, 128, 128);
+  --gray: rgb(233, 233, 233);
 }
 
 /* General styling */
 body {
   font-family: public-sans, sans-serif;
-  background-color: var(--gray);
   color: var(--black);
   margin: 0;
   padding: 0;
@@ -46,6 +45,12 @@ p {
 }
 
 a {
-  color: var(--black);
+  color: red;
   text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
