@@ -49,8 +49,3 @@ a {
   color: var(--black);
   text-decoration: none;
 }
-
-.side-by-side {
-  display: flex;
-  justify-content: space-evenly;
-}
