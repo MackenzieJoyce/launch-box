@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { MediaQuery, Stack, Tabs } from '@mantine/core';
+import { MediaQuery, Tabs } from '@mantine/core';
 import logo from '../assets/images/logo.png';
 
 export default function NavBar() {
