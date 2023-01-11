@@ -1,21 +1,23 @@
 import { MediaQuery } from "@mantine/core";
 
 export default function LaunchInfo({ launch }) {
-    let launchMonth = launch.date_str.substring(0, 4)
-    let launchDay = launch.date_str.substring(4, 7)
+    let launchMonth = launch.date_str.substring(0, 3)
+    let launchDay = launch.date_str.substring(4, 6)
+    let launchDate = `${launchMonth} ${launchDay}`
 
     return (
         <MediaQuery smallerThan="sm" styles={stack}>
             <div style={styles.LaunchSection}>
                 <MediaQuery smallerThan="sm" styles={stretch}>
                     <div style={styles.LaunchDate}>
-                        <p style={styles.month}>{launchMonth} {launchDay}</p>
+                        <p style={styles.date}>{launchDate}</p>
                     </div>
                 </MediaQuery>
                 <MediaQuery smallerThan="md" styles={stretch}>
                     <div style={styles.LaunchInfo}>
                         <h3>{launch.provider.name} | {launch.vehicle.name}</h3>
-                        <h4>{launch.name}</h4>
+                        <h4>Vehicle Name: {launch.name}</h4>
+                        <p>Pad: {launch.pad.name}</p>
                         <p>Location: {launch.pad.location.name}</p>
                         {launch.win_open ?
                         <p>Launch window: {launch.win_open}</p> :
@@ -42,7 +44,7 @@ const styles = {
         borderBottom: '2px solid darkgray',
         borderRadius: '10px',
     },
-    month: {
+    date: {
         fontSize: '1.5rem',
     },
     LaunchInfo: {
