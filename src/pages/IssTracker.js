@@ -4,6 +4,7 @@ import { Container, AspectRatio, Image } from "@mantine/core";
 
 import PageHeader from "../UI/PageHeader";
 import InfoBar from "../UI/InfoBar";
+import SatelliteCounter from "../components/SatelliteCounter";
 import Loading from "../UI/Loading";
 
 export default function IssTracker() {
@@ -66,7 +67,7 @@ export default function IssTracker() {
                                 {firstAvailableViewing.aos.date.substring(11, 16)}
                             </h2>
                             <AspectRatio ratio={16/9} md={{ minWidth: 300 }} mx="auto">
-                                <Image src={issSrc} alt={issSrc} />
+                                <Image src={issSrc} alt={issCaption} />
                             </AspectRatio>
                         </div>
                     ) : null}
@@ -89,12 +90,17 @@ export default function IssTracker() {
                     </div>
                 </div>
             </InfoBar>
+
+            <Container>
+                <SatelliteCounter />
+            </Container>
         </Container>
     );
 }
 
 const styles = {
     trackerComponent: {
+        padding: "3% 0 5% 0",
         display: "flex",
         justifyContent: "space-evenly",
         alignItems: "center",
