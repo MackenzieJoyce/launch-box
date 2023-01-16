@@ -1,16 +1,12 @@
 import { MediaQuery } from "@mantine/core";
 
 export default function LaunchInfo({ launch }) {
-    let launchMonth = launch.date_str.substring(0, 3)
-    let launchDay = launch.date_str.substring(4, 6)
-    let launchDate = `${launchMonth} ${launchDay}`
-
     return (
         <MediaQuery smallerThan="sm" styles={stack}>
             <div style={styles.LaunchSection}>
                 <MediaQuery smallerThan="sm" styles={stretch}>
                     <div style={styles.LaunchDate}>
-                        <p style={styles.date}>{launchDate}</p>
+                        <p style={styles.date}>{launch.date_str}</p>
                     </div>
                 </MediaQuery>
                 <MediaQuery smallerThan="md" styles={stretch}>
