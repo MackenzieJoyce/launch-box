@@ -5,6 +5,7 @@ import { Container, AspectRatio, Image } from "@mantine/core";
 import PageHeader from "../UI/PageHeader";
 import InfoBar from "../UI/InfoBar";
 import SatelliteCounter from "../components/SatelliteCounter";
+import YouTubeEmbedded from "../UI/YouTubeEmbedded";
 import Loading from "../UI/Loading";
 
 export default function IssTracker() {
@@ -70,7 +71,12 @@ export default function IssTracker() {
                                 <Image src={issSrc} alt={issCaption} />
                             </AspectRatio>
                         </div>
-                    ) : null}
+                    ) :
+                        <div style={styles.issLivestream}>
+                            <p>No viewing times available... Let's take a look at what the ISS sees!</p>
+                            <YouTubeEmbedded videoId="86YLFOog4GM" />
+                        </div>
+                    }
 
                     <div style={styles.otherAvailabilityContainer}>
                         {issData ? issData.map((iss) => (
@@ -86,7 +92,7 @@ export default function IssTracker() {
                                 </p>
                             </div>
                         ))
-                        : null}
+                            : null }
                     </div>
                 </div>
             </InfoBar>
@@ -98,7 +104,8 @@ export default function IssTracker() {
 
 const styles = {
     trackerComponent: {
-        padding: "3% 0 5% 0",
+        padding: "3% 3% 5% 3%",
+        // Added left and right padding to make video look better on smaller screens... Once viewing times are available, adjust content rather than setting this back to 0.
         display: "flex",
         justifyContent: "space-evenly",
         alignItems: "center",
@@ -111,12 +118,16 @@ const styles = {
         borderBottom: "2px solid red",
     },
     otherAvailabilityContainer: {
-        minWidth: "250px",
+        // minWidth: "250px",
+        // ^^^ Removed to make video take up whole component... Once viewing times are available, make this flexible.
         textAlign: "center",
     },
     indivAvailability: {
         padding: "5% 0",
         borderTop: ".5px solid #fff",
         borderBottom: ".5px solid lightgrey",
-    }
+    },
+    issLivestream: {
+        width: "100%",
+    },
 }
