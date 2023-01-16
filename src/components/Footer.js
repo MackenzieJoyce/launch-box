@@ -29,6 +29,9 @@ export default function Footer() {
                                 <li>
                                     <a href="https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf">NASA Images and Video Library</a>
                                 </li>
+                                <li>
+                                    <a href="https://celestrak.org/NORAD/elements/index.php?FORMAT=json">CelesTrak</a>
+                                </li>
                             </ul>
                         </div>
                         <div style={styles.spacing}>
