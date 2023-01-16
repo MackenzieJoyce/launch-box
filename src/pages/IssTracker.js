@@ -91,9 +91,7 @@ export default function IssTracker() {
                 </div>
             </InfoBar>
 
-            <Container>
-                <SatelliteCounter />
-            </Container>
+            <SatelliteCounter />
         </Container>
     );
 }
