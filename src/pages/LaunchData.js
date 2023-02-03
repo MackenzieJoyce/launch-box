@@ -40,9 +40,10 @@ export default function LaunchData() {
             <Container size='md'>
 
                 <PageHeader title='Launch Schedule' description='View the schedule for the next 5 launches' />
+                <p style={styles.center}>Watch <a href={LiveStreams[0].url}>{LiveStreams[0].name}</a> anytime for pre-recorded and live programming.</p>
 
                 <MediaQuery smallerThan='md' styles={reverseAbove}>
-                <div style={styles.nextTo}>
+                <div>
                     {loading ? <Loading /> : null}
                     {error ? <p>There was an error</p> : null}
 
@@ -58,24 +59,6 @@ export default function LaunchData() {
                             </Timeline.Item>
                         )) : null}
                     </Timeline>
-
-                    <MediaQuery smallerThan='md' styles={aside}>
-                        <aside style={styles.spacing}>
-                            <h3>Livestream Links</h3>
-                            <MediaQuery smallerThan='md' styles={flat}>
-                                <ul>
-                                    { LiveStreams.map((livestream) => {
-                                        return (
-                                            <li key={livestream.name} style={styles.link}>
-                                                <a href={livestream.url} target='_blank' rel='noreferrer'>{livestream.name}</a>
-                                            </li>
-                                        )
-                                    })
-                                    }
-                                </ul>
-                            </MediaQuery>
-                        </aside>
-                    </MediaQuery>
                 </div>
                 </MediaQuery>
 
@@ -85,9 +68,6 @@ export default function LaunchData() {
 }
 
 const styles = {
-    nextTo: {
-        display: 'flex',
-    },
     spacing: {
         margin: '0 3%',
     },
@@ -99,6 +79,10 @@ const styles = {
         width: 'fit-content',
         padding: '3% 0',
     },
+    center: {
+        marginBottom: '3%',
+        textAlign: 'center',
+    },
 }
 
 const contain = {
@@ -109,14 +93,4 @@ const contain = {
 
 const reverseAbove = {
     flexDirection: 'column-reverse',
-}
-
-const aside = {
-    marginBottom: '3%',
-}
-
-const flat = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
 }
