@@ -1,6 +1,8 @@
 import { MediaQuery } from "@mantine/core";
 
 export default function LaunchWeather({ launch }) {
+    const temp = Math.round((launch.weather_temp * 9 / 5) + 32)
+
     return (
         <MediaQuery smallerThan="sm" styles={fill}>
             <div style={styles.WeatherSection}>
@@ -8,7 +10,7 @@ export default function LaunchWeather({ launch }) {
                 {launch.weather_summary ?
                     <div>
                         <p>Conditions: {launch.weather_condition}</p>
-                        <p>Temp: {launch.weather_temp}&deg;F</p>
+                        <p>Temp: {temp}&deg;F</p>
                         <p>Wind: {launch.weather_wind_mph} mph</p>
                     </div>
                 :
