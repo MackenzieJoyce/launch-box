@@ -19,9 +19,6 @@ export default function LaunchInfo({ launch }) {
                         <h4>Vehicle Name: {launch.name}</h4>
                         <p>Pad: {launch.pad.name}</p>
                         <p>Location: {launch.pad.location.name}</p>
-                        {launch.win_open ?
-                        <p>Launch window: {launch.win_open}</p> :
-                        <p>Launch window not updated</p>}
                     </div>
                 </MediaQuery>
             </div>
