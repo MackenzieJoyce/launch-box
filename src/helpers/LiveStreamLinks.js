@@ -1,6 +1,6 @@
 const Links = [
     {
-        name: 'NASA TV (Official)',
+        name: 'NASA TV',
         url: 'https://www.youtube.com/watch?v=21X5lGlDOfg',
     },
     {
