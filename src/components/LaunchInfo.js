@@ -1,12 +1,29 @@
 import { MediaQuery } from "@mantine/core";
 
 export default function LaunchInfo({ launch }) {
+    const launchWin = launch.win_open;
+    console.log('Launch Window: ', launchWin);
+    let launchTime = '';
+    let localTime = '';
+
+
+    if (launch.win_open) {
+        // Get time after T and remove Z
+        launchTime = launchWin.slice(11, 13);
+        launchTime - 5 < 0 ? localTime = launchTime - 5 + 12 : localTime = launchTime - 5;
+        launchTime = localTime + launchWin.slice(13, 16) + ' EST';
+    }
+
+
     return (
         <MediaQuery smallerThan="sm" styles={stack}>
             <div style={styles.LaunchSection}>
                 <MediaQuery smallerThan="sm" styles={stretch}>
                     <div style={styles.LaunchDate}>
                         <p style={styles.date}>{launch.date_str}</p>
+                        {launch.win_open ?
+                            <p>{launchTime}</p> :
+                            <p>Launch window not updated</p>}
                     </div>
                 </MediaQuery>
                 <MediaQuery smallerThan="md" styles={stretch}>
