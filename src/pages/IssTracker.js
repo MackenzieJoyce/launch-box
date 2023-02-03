@@ -6,7 +6,7 @@ import PageHeader from "../UI/PageHeader";
 import InfoBar from "../UI/InfoBar";
 import SatelliteCounter from "../components/SatelliteCounter";
 import YouTubeEmbedded from "../UI/YouTubeEmbedded";
-import Loading from "../UI/Loading";
+// import Loading from "../UI/Loading";
 
 export default function IssTracker() {
     const [issData, setIssData] = useState([]);
@@ -14,7 +14,7 @@ export default function IssTracker() {
     const [randomNum, setRandomNum] = useState(Math.floor(Math.random() * 100));
     const [issSrc, setIssSrc] = useState("");
     const [issCaption, setIssCaption] = useState("");
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     // Get ISS flyover data
@@ -24,12 +24,12 @@ export default function IssTracker() {
             .then((response) => {
                 setFirstAvailableViewing(response.data.member[0]);
                 setIssData(response.data.member.slice(1));
-                setLoading(false)
+                // setLoading(false)
             })
             .catch((err) => {
                 console.error(err);
                 setError(true)
-                setLoading(false)
+                // setLoading(false)
             });
     };
 
@@ -51,7 +51,7 @@ export default function IssTracker() {
     return (
         <Container size="md">
             <PageHeader title="ISS Tracker" description="Know when to look up!" />
-            {loading ? <Loading /> : null}
+            {/* {loading ? <Loading /> : null} */}
             {error ? <p>There was an error</p> : null}
             <InfoBar>
                 <div style={styles.trackerComponent}>
