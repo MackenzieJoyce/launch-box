@@ -2,7 +2,6 @@ import { MediaQuery } from "@mantine/core";
 
 export default function LaunchInfo({ launch }) {
     const launchWin = launch.win_open;
-    console.log('Launch Window: ', launchWin);
     let launchTime = '';
     let localTime = '';
 
