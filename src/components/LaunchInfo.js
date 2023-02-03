@@ -1,5 +1,4 @@
 import { MediaQuery } from "@mantine/core";
-// Bring in the function to format the launch time
 import LaunchTime from "../helpers/LaunchTime";
 
 export default function LaunchInfo({ launch }) {
