@@ -1,4 +1,5 @@
 import { MediaQuery } from "@mantine/core";
+import LiveStreams from '../helpers/LiveStreamLinks';
 import LaunchTime from "../helpers/LaunchTime";
 
 export default function LaunchInfo({ launch }) {
@@ -10,15 +11,23 @@ export default function LaunchInfo({ launch }) {
                         <p style={styles.date}>{launch.date_str}</p>
                         {launch.win_open ?
                             <LaunchTime launch={launch} />:
-                            <p>Launch window not updated</p>}
+                            <p>Time of launch not updated</p>}
                     </div>
                 </MediaQuery>
                 <MediaQuery smallerThan="md" styles={stretch}>
                     <div style={styles.LaunchInfo}>
                         <h3>{launch.provider.name} | {launch.vehicle.name}</h3>
-                        <h4>Vehicle Name: {launch.name}</h4>
+                        <h5>Vehicle Name: {launch.name}</h5>
                         <p>Pad: {launch.pad.name}</p>
                         <p>Location: {launch.pad.location.name}</p>
+                        {LiveStreams.map((livestream) => {
+                            if (launch.provider.name === livestream.name) {
+                                return (
+                                    <p><a href={livestream.url}>{livestream.summary}</a></p>
+                                )
+                            }
+                        })}
+
                     </div>
                 </MediaQuery>
             </div>
