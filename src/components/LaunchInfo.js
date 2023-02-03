@@ -48,7 +48,7 @@ const styles = {
         display: 'flex',
     },
     LaunchDate: {
-        width: '40%',
+        minWidth: '40%',
         margin: '2%',
         padding: '5%',
         backgroundColor: 'rgb(255, 255, 255)',
