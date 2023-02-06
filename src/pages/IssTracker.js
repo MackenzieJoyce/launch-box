@@ -4,7 +4,7 @@ import { Container, AspectRatio, Image } from "@mantine/core";
 
 import PageHeader from "../UI/PageHeader";
 import InfoBar from "../UI/InfoBar";
-import SatelliteCounter from "../components/SatelliteCounter";
+// import SatelliteCounter from "../components/SatelliteCounter";
 import YouTubeEmbedded from "../UI/YouTubeEmbedded";
 // import Loading from "../UI/Loading";
 
@@ -16,21 +16,23 @@ export default function IssTracker() {
     const [issCaption, setIssCaption] = useState("");
     // const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    let issRes = [];
 
     // Get ISS flyover data
     const getApiData = async () => {
         axios
             .get("https://tle.ivanstanojevic.me/api/tle/25544/flyover")
             .then((response) => {
-                setFirstAvailableViewing(response.data.member[0]);
-                setIssData(response.data.member.slice(1));
+                issRes = response.data.member;
+                setFirstAvailableViewing(issRes[0]);
+                setIssData(issRes.slice(1));
                 // setLoading(false)
             })
             .catch((err) => {
                 console.error(err);
                 setError(true)
                 // setLoading(false)
-            });
+            })
     };
 
     useEffect(() => {
@@ -48,6 +50,7 @@ export default function IssTracker() {
         )
     }
 
+
     return (
         <Container size="md">
             <PageHeader title="ISS Tracker" description="Know when to look up!" />
@@ -59,13 +62,21 @@ export default function IssTracker() {
                         <div style={styles.firstAvailableInfo}>
                             <h4>Your next available viewing date is </h4>
                             <h2 style={styles.highlight}>
-                                {firstAvailableViewing.aos.date.substring(5, 7)}/
-                                {firstAvailableViewing.aos.date.substring(8, 10)}/
-                                {firstAvailableViewing.aos.date.substring(0, 4)}{" "}
+                                {firstAvailableViewing.aos.date.slice(5, 7)}/
+                                {firstAvailableViewing.aos.date.slice(8, 10)}/
+                                {firstAvailableViewing.aos.date.slice(0, 4)}{" "}
 
                                 at{" "}
 
-                                {firstAvailableViewing.aos.date.substring(11, 16)}
+                                {firstAvailableViewing.aos.date.slice(11, 16).split(':').map((time, i) => {
+                                    if (i === 0) {
+                                        time = time % 12 || 12;
+                                    }
+                                    if (i === 1) {
+                                        time = time + (firstAvailableViewing.aos.date.slice(11, 16) < 12 ? ' AM' : ' PM');
+                                    }
+                                    return time;
+                                }).join(':')}
                             </h2>
                             <AspectRatio ratio={16/9} md={{ minWidth: 300 }} mx="auto">
                                 <Image src={issSrc} alt={issCaption} />
@@ -80,24 +91,30 @@ export default function IssTracker() {
 
                     <div style={styles.otherAvailabilityContainer}>
                         {issData ? issData.map((iss) => (
-                            <div key={iss.id} style={styles.indivAvailability}>
-                                <p>
-                                    {iss.aos.date.substring(5, 7)}/
-                                    {iss.aos.date.substring(8, 10)}/
-                                    {iss.aos.date.substring(0, 4)}{" "}
+                            <p key={iss.aos.date} style={styles.indivAvailability}>
+                                {iss.aos.date.slice(5, 7)}/
+                                {iss.aos.date.slice(8, 10)}/
+                                {iss.aos.date.slice(0, 4)}{" "}
 
-                                    at{" "}
+                                at{" "}
 
-                                    {iss.aos.date.substring(11, 16)}
-                                </p>
-                            </div>
+                                {iss.aos.date.slice(11, 16).split(':').map((time, i) => {
+                                    if (i === 0) {
+                                        time = time % 12 || 12;
+                                    }
+                                    if (i === 1) {
+                                        time = time + (iss.aos.date.slice(11, 16) < 12 ? ' AM' : ' PM');
+                                    }
+                                    return time;
+                                }).join(':')}
+                            </p>
                         ))
                             : null }
                     </div>
                 </div>
             </InfoBar>
 
-            <SatelliteCounter />
+            {/* <SatelliteCounter /> */}
         </Container>
     );
 }
