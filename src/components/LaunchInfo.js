@@ -20,6 +20,10 @@ export default function LaunchInfo({ launch }) {
                         <h5>Vehicle Name: {launch.name}</h5>
                         <p>Pad: {launch.pad.name}</p>
                         <p>Location: {launch.pad.location.name}</p>
+                        {launch.provider.name === "SpaceX" ?
+                            <p>Purpose: {launch.tags[1].text}</p> :
+                            <p>Purpose: {launch.tags[0].text}</p>
+                        }
                         {LiveStreams.map((livestream) => {
                             if (launch.provider.name === livestream.name) {
                                 return (
@@ -27,7 +31,6 @@ export default function LaunchInfo({ launch }) {
                                 )
                             }
                         })}
-
                     </div>
                 </MediaQuery>
             </div>
