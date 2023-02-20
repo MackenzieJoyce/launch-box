@@ -20,8 +20,7 @@ export default function NavBar() {
             <div style={styles.logoDiv}>
                 <img src={logo} alt="logo" style={styles.logoImg}/>
                 <h1>Launch Box</h1>
-                </div>
-
+            </div>
 
             <nav style={styles.flexDown}>
                 <div style={styles.full}>
@@ -62,12 +61,14 @@ const styles = {
     },
     logoDiv: {
         minWidth: "fit-content",
-        padding: "0 3% 0 2%",
+        padding: "0 2rem",
         borderBottom: "2px solid red",
         display: "flex",
+        alignItems: "center",
     },
     logoImg: {
         width: "70px",
+        marginRight: "1rem",
         height: "auto",
         objectFit: "cover",
     },
