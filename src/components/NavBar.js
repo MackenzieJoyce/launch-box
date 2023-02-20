@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { MediaQuery, Tabs } from '@mantine/core';
 import logo from '../assets/images/logo.png';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendar } from "@fortawesome/free-regular-svg-icons";
+import { faMap } from "@fortawesome/free-regular-svg-icons";
+
 
 export default function NavBar() {
     const [activeTab, setActiveTab] = useState(window.location.pathname);
@@ -25,9 +29,11 @@ export default function NavBar() {
                         <MediaQuery smallerThan="xs" styles={center}>
                         <Tabs.List position="right">
                             <Tabs.Tab value="/" component={Link} to="/">
+                                <FontAwesomeIcon icon={faCalendar} style={styles.icon} />
                                 Launch Schedule
                             </Tabs.Tab>
                             <Tabs.Tab value="/iss-tracker" component={Link} to="/iss-tracker">
+                                <FontAwesomeIcon icon={faMap} style={styles.icon} />
                                 ISS Tracker
                             </Tabs.Tab>
                         </Tabs.List>
@@ -64,6 +70,10 @@ const styles = {
         width: "70px",
         height: "auto",
         objectFit: "cover",
+    },
+    icon: {
+        marginRight: ".6rem",
+        color: "red",
     },
 };
 
